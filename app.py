@@ -3,7 +3,10 @@ import tensorflow as tf
 from PIL import Image
 import numpy as np
 
-model = tf.keras.models.load_model('cnn_tumor.h5')
+# Load the model from Hugging Face
+model_url = "https://huggingface.co/mars-hm/cnn_tumor/resolve/main/cnn_tumor.h5"
+model_path = tf.keras.utils.get_file("cnn_tumor.h5", model_url)
+model = tf.keras.models.load_model(model_path)
 
 def preprocess_image(image):
     image = image.resize((128, 128))
